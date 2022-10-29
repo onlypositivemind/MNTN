@@ -196,12 +196,11 @@ body.lock {
   width: 45px;
   height: 45px;
   position: relative;
-  top: 0;
+  top: 19px;
   right: 15px;
   -webkit-transition-duration: 1s;
        -o-transition-duration: 1s;
           transition-duration: 1s;
-  margin: 48px auto 12px auto;
   cursor: pointer;
   display: none;
 }
