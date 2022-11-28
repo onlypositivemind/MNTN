@@ -1,15 +1,17 @@
 @import "_nullstyle.scss";
-@import "_mixin-adaptive.scss";
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700;800&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&display=swap");
 
-$mainColor: #fbd784;
-$wh: 45px;
+:root {
+	--primary-font-color: #fbd784;
+	--primary-bg-color: #0b1d26;
+	--wh: 45px;
+}
 
 body {
 	font-family: Poppins, sans-serif;
 	color: #fff;
-	background-color: #0b1d26;
+	background-color: var(--primary-bg-color);
 	& a {
 		color: #fff;
 	}
@@ -35,14 +37,13 @@ body {
 .title {
 	display: inline-block;
 	font-weight: 800;
-	letter-spacing: 6px;
+	font-size: clamp(0.875rem, 0.805rem + 0.35vw, 1.125rem);
+	letter-spacing: clamp(0.125rem, 0.055rem + 0.35vw, 0.375rem);
 	text-transform: uppercase;
-	color: $mainColor;
+	color: var(--primary-font-color);
 	position: relative;
 	top: 0;
 	left: 104px;
-	@include adaptiv-value("letter-spacing", 6, 2, 0);
-	@include adaptiv-value("font-size", 16, 12, 0);
 	&::before {
 		content: "";
 		position: absolute;
@@ -50,17 +51,16 @@ body {
 		top: 45%;
 		width: 72px;
 		height: 2px;
-		background-color: $mainColor;
+		background-color: var(--primary-font-color);
 	}
 }
 
 .header {
-	padding: 80px 0 0 0;
+	padding-top: clamp(2.5rem, 1.804rem + 3.48vw, 5rem);
 	position: absolute;
 	top: 0;
 	left: 0;
 	width: 100%;
-	@include adaptiv-value("padding-top", 80, 30, 0);
 
 	&__container {
 		display: flex;
@@ -87,6 +87,25 @@ body {
 			background: url(../img/icons/account.svg) center / cover no-repeat;
 			margin-right: 10px;
 		}
+		@media (any-hover: hover) {
+			&:hover {
+				animation: wiggle 0.5s linear;
+			}
+		}
+	}
+}
+@keyframes wiggle {
+	25% {
+		transform: rotate(3deg);
+	}
+	50% {
+		transform: rotate(-3deg);
+	}
+	75% {
+		transform: rotate(3deg);
+	}
+	100% {
+		transform: rotate(-3deg);
 	}
 }
 .menu {
@@ -101,14 +120,14 @@ body {
 		transition: 0.3s linear;
 		@media (any-hover: hover) {
 			&:hover {
-				color: $mainColor;
+				color: var(--primary-font-color);
 			}
 		}
 	}
 }
 .burger-menu {
-	width: $wh;
-	height: $wh;
+	width: var(--wh);
+	height: var(--wh);
 	position: relative;
 	top: 19px;
 	right: 15px;
@@ -120,7 +139,7 @@ body {
 	span:before,
 	span:after {
 		height: 6px;
-		width: $wh;
+		width: var(--wh);
 		background-color: #fff;
 		border-radius: 20px;
 		transition-duration: 0.25s;
@@ -170,7 +189,7 @@ body {
 		height: 100vh;
 		overflow-y: auto;
 		padding-bottom: 30px;
-		background: #0b1d26;
+		background: var(--primary-bg-color);
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -195,8 +214,8 @@ body {
 	.header__login {
 		justify-self: end;
 		&::before {
-			width: $wh;
-			height: $wh;
+			width: var(--wh);
+			height: var(--wh);
 		}
 		& span {
 			display: none;
@@ -233,11 +252,9 @@ body {
 		margin: 0 0 32px 0;
 		font-family: "Playfair Display", sans-serif;
 		font-weight: 600;
-		font-size: 88px;
-		line-height: 100px;
+		font-size: clamp(1.875rem, 1.179rem + 3.48vw, 4.375rem);
+		line-height: clamp(2.813rem, 1.856rem + 4.78vw, 6.25rem);
 		text-transform: capitalize;
-		@include adaptiv-value("font-size", 88, 30, 0);
-		@include adaptiv-value("line-height", 100, 45, 0);
 	}
 
 	&__scroll {
@@ -256,34 +273,29 @@ body {
 	margin: -300px 0 0 0;
 
 	&__row {
-		margin: 0 0 200px 0;
+		margin-bottom: clamp(5rem, 2.913rem + 10.43vw, 12.5rem);
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
 		gap: 120px;
 		align-items: center;
-		@include adaptiv-value("margin-bottom", 200, 80, 0);
 	}
 
 	&__text {
 		position: relative;
-		padding: 140px 0 0 140px;
+		padding-top: clamp(0rem, -2.435rem + 12.17vw, 8.75rem);
+		padding-left: clamp(0rem, -2.435rem + 12.17vw, 8.75rem);
 		font-weight: 700;
 		font-size: 18px;
-		@include adaptiv-value("padding-top", 140, 0, 0);
-		@include adaptiv-value("padding-left", 140, 0, 0);
 		&::before {
 			display: block;
 			content: attr(data-number);
 			position: absolute;
 			top: 5%;
 			left: 0;
-			width: 240px;
-			height: 240px;
-			font-size: 240px;
+			width: clamp(7.5rem, 5.413rem + 10.43vw, 15rem);
+			height: clamp(7.5rem, 5.413rem + 10.43vw, 15rem);
+			font-size: clamp(7.5rem, 5.413rem + 10.43vw, 15rem);
 			color: rgba(255, 255, 255, 0.1);
-			@include adaptiv-value("width", 240, 120, 0);
-			@include adaptiv-value("height", 240, 120, 0);
-			@include adaptiv-value("font-size", 240, 120, 0);
 		}
 	}
 
@@ -295,22 +307,18 @@ body {
 		margin: 0 0 27px 0;
 		font-family: "Playfair Display", sans-serif;
 		font-weight: 600;
-		font-size: 64px;
-		line-height: 77px;
-		@include adaptiv-value("font-size", 64, 25, 0);
-		@include adaptiv-value("line-height", 77, 30, 0);
+		font-size: clamp(1.563rem, 0.884rem + 3.39vw, 4rem);
+		line-height: clamp(1.875rem, 1.058rem + 4.09vw, 4.813rem);
 	}
 
 	&__descr {
 		margin: 0 0 27px 0;
 		font-weight: 700;
-		line-height: 32px;
-
-		@include adaptiv-value("line-height", 32, 25, 0);
+		line-height: clamp(1.563rem, 1.441rem + 0.61vw, 2rem);
 	}
 
 	&__link {
-		color: $mainColor;
+		color: var(--primary-font-color);
 		position: relative;
 		& svg {
 			position: absolute;
@@ -334,9 +342,9 @@ body {
 }
 
 .footer {
-	padding: 10px 0 120px 0;
-	box-shadow: 0 0 30px #0b1d00;
-	@include adaptiv-value("padding-bottom", 120, 80, 0);
+	padding-top: 10px;
+	padding-bottom: clamp(1.563rem, 1.441rem + 0.61vw, 2rem);
+	border-top: 2px solid #0b1d00;
 
 	&__row {
 		display: flex;
@@ -354,8 +362,7 @@ body {
 	&__descr {
 		max-width: 303px;
 		font-weight: 700;
-		line-height: 32px;
-		@include adaptiv-value("line-height", 32, 18, 0);
+		line-height: clamp(1.125rem, 0.882rem + 1.22vw, 2rem);
 	}
 
 	&__copyright {
@@ -370,8 +377,7 @@ body {
 	&__right {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
-		gap: 100px;
-		@include adaptiv-value("gap", 100, 15, 0);
+		gap: clamp(0.938rem, -0.541rem + 7.39vw, 6.25rem);
 	}
 
 	&__subtitle {
@@ -379,7 +385,7 @@ body {
 		margin: 0 0 24px 0;
 		font-weight: 700;
 		font-size: 24px;
-		color: $mainColor;
+		color: var(--primary-font-color);
 	}
 
 	&__list {
@@ -408,16 +414,28 @@ body {
 	.guide__image img {
 		margin: 0 auto;
 	}
-	.footer__right {
-		grid-template-columns: auto;
-	}
+}
+
+@media (max-width: 870px) {
 	.footer__row {
 		flex-direction: column-reverse;
 		gap: 40px;
+	}
+	.footer__right,
+	.footer__left,
+	.footer__descr {
+		text-align: center;
+		max-width: none;
 	}
 	.footer__copyright {
 		position: relative;
 		left: 0;
 		top: 50px;
+	}
+}
+
+@media (max-width: 500px) {
+	.footer__right {
+		grid-template-columns: auto;
 	}
 }
